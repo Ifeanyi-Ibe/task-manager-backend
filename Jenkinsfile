@@ -15,7 +15,7 @@ pipeline {
         stage("Build docker image") {
             when {
                 expression {
-                    env.BRANCH_NAME = 'master'
+                    env.BRANCH_NAME = 'main'
                 }
             }
             steps {
@@ -26,6 +26,11 @@ pipeline {
         }
 
         stage("Deploy image") {
+            when {
+                expression {
+                    env.BRANCH_NAME = 'main'
+                }
+            }
             steps {
                 script {
                     echo "Deploying image..."
