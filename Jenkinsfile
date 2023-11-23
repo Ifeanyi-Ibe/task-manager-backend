@@ -13,6 +13,11 @@ pipeline {
         }
 
         stage("Build docker image") {
+            when {
+                expression {
+                    env.BRANCH_NAME = 'master'
+                }
+            }
             steps {
                 script {
                     gv.buildImage()
